@@ -1,15 +1,20 @@
 from car import Car
 
-
 class Palindrome(Car):
-    def __init__(self, last_service_date, warning_light_is_on):
+    def __init__(self, last_service_date, warning_light_is_on, tire_type, sensor_array):
         super().__init__(last_service_date)
+        self.tire_type = tire_type
+        self.sensor_array = sensor_array
         self.warning_light_is_on = warning_light_is_on
 
     def needs_service(self):
         battery = SpindlerBattery(self.last_service_date)
         engine = SternmanEngine(self.warning_light_is_on)
-        if battery.engine_should_be_serviced or engine.engine_should_be_serviced:
-            return True
+        if self.tire_type == 'Carrigan':
+            tire = CarriganTire(sensor_array)
+        else:
+            tire = OctoprimeTire(sensor_array)
+        if battery.engine_should_be_serviced or engine.engine_should_be_serviced or tire.tire_should_be_serviced:
+                    return True
         else:
             return False

@@ -5,4 +5,4 @@ class SpindlerBattery():
         self.last_service_date = last_service_date
     
     def engine_should_be_serviced(self):
-        return (self.last_service_date + 2) < datetime.today().date()
+        return (self.last_service_date + 3) < datetime.today().date()
